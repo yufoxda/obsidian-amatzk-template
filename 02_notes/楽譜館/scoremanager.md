@@ -3,6 +3,7 @@ tags:
   - note
   - 楽譜館
   - webapp
+  - electone
 ---
 # 開発の背景
 
