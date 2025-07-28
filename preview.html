@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graphviz Preview</title>
+    <script src="https://unpkg.com/@hpcc-js/wasm/dist/graphviz.umd.js"></script>
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+        #graph {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Graphviz DOT Preview</h1>
+    
+    <textarea id="dotSource">digraph obsidianamatzktemplatemain {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+    "01_diary_2025_2025_07_28_md" [label="2025-07-28", fillcolor="#e3f2fd", style="filled,rounded"];
+    "01_diary_2024_2024_09_16_md" [label="2024-09-16", fillcolor="#e3f2fd", style="filled,rounded"];
+    "02_notes_tapla_tapla____md" [label="tapla 仕様", fillcolor="#e3f2fd", style="filled,rounded"];
+    "02_notes_tapla_tapla_md" [label="tapla", fillcolor="#e3f2fd", style="filled,rounded"];
+    "02_notes_____scoremanager_md" [label="scoremanager", fillcolor="#e3f2fd", style="filled,rounded"];
+    "02_notes_2025_electone_domino____md" [label="electoneとdominoの連携", fillcolor="#e3f2fd", style="filled,rounded"];
+    "02_notes_2025_obsidian___web_md" [label="obsidianグラフweb", fillcolor="#e3f2fd", style="filled,rounded"];
+    "02_notes_2024_SampleNote_md" [label="SampleNote", fillcolor="#e3f2fd", style="filled,rounded"];
+    "00_templates_02_note_md" [label="02_note", fillcolor="#e3f2fd", style="filled,rounded"];
+    "00_templates_01_diary_md" [label="01_diary", fillcolor="#e3f2fd", style="filled,rounded"];
+    "diary" [label="diary", fillcolor="#e3f2fd", style="filled,rounded"];
+    "note" [label="note", fillcolor="#e3f2fd", style="filled,rounded"];
+    "webapp" [label="webapp", fillcolor="#e3f2fd", style="filled,rounded"];
+    "electone" [label="electone", fillcolor="#e3f2fd", style="filled,rounded"];
+    "domino" [label="domino", fillcolor="#e3f2fd", style="filled,rounded"];
+    "midi" [label="midi", fillcolor="#e3f2fd", style="filled,rounded"];
+    "graph" [label="graph", fillcolor="#e3f2fd", style="filled,rounded"];
+    "01_diary_2025_2025_07_28_md" -> "diary";
+    "01_diary_2024_2024_09_16_md" -> "diary";
+    "02_notes_tapla_tapla____md" -> "note";
+    "02_notes_tapla_tapla____md" -> "webapp";
+    "02_notes_tapla_tapla_md" -> "note";
+    "02_notes_tapla_tapla_md" -> "webapp";
+    "02_notes_tapla_tapla_md" -> "electone";
+    "02_notes_____scoremanager_md" -> "note";
+    "02_notes_____scoremanager_md" -> "webapp";
+    "02_notes_____scoremanager_md" -> "electone";
+    "02_notes_2025_electone_domino____md" -> "note";
+    "02_notes_2025_electone_domino____md" -> "electone";
+    "02_notes_2025_electone_domino____md" -> "domino";
+    "02_notes_2025_electone_domino____md" -> "midi";
+    "02_notes_2025_obsidian___web_md" -> "note";
+    "02_notes_2025_obsidian___web_md" -> "webapp";
+    "02_notes_2025_obsidian___web_md" -> "graph";
+    "02_notes_2024_SampleNote_md" -> "note";
+    "00_templates_02_note_md" -> "note";
+    "00_templates_01_diary_md" -> "diary";
+}</textarea>
+    
+    <button onclick="renderGraph()">Render Graph</button>
+    
+    <div id="graph"></div>
+
+    <script>
+        async function renderGraph() {
+            const graphviz = await window["@hpcc-js/wasm"];
+            const dot = document.getElementById('dotSource').value;
+            
+            try {
+                const svg = graphviz.dot(dot);
+                document.getElementById('graph').innerHTML = svg;
+            } catch (error) {
+                document.getElementById('graph').innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+
+        // Render graph on page load
+        window.addEventListener('load', renderGraph);
+    </script>
+</body>
+</html>
