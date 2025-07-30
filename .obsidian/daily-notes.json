@@ -2,5 +2,5 @@
   "format": "YYYY/YYYY-MM-DD",
   "folder": "01_diary",
   "template": "00_templates/01_diary",
-  "autorun": true
+  "autorun": false
 }

@@ -12,11 +12,18 @@
   "enable_system_commands": false,
   "shell_path": "",
   "user_scripts_folder": "",
-  "enable_folder_templates": true,
+  "enable_folder_templates": false,
   "folder_templates": [
     {
       "folder": "02_notes",
       "template": "00_templates/02_note.md"
+    }
+  ],
+  "enable_file_templates": false,
+  "file_templates": [
+    {
+      "regex": ".*",
+      "template": ""
     }
   ],
   "syntax_highlighting": true,
@@ -24,5 +31,6 @@
   "enabled_templates_hotkeys": [
     "00_templates/10_current_time.md"
   ],
-  "startup_templates": []
+  "startup_templates": [],
+  "intellisense_render": 1
 }
